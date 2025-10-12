@@ -3,12 +3,7 @@
 import math
 
 def is_prime(num):
-    """
-    Checks if a number is a prime number.
-
-    This implementation is optimized by checking for divisors only up to the
-    square root of the number.
-    """
+   
     if num <= 1:
         return False
     for i in range(2, int(math.sqrt(num)) + 1):
@@ -17,9 +12,7 @@ def is_prime(num):
     return True
 
 def fibonacci(n):
-    """
-    Calculates the nth Fibonacci number using an iterative approach.
-    """
+    
     if n <= 0:
         return 0
     elif n == 1:
@@ -31,11 +24,7 @@ def fibonacci(n):
         return b
 
 def get_file_content(filename):
-    """
-    Reads the content of a file and returns it as a string.
-
-    Handles FileNotFoundError gracefully by returning an error message.
-    """
+   
     try:
         with open(filename, "r") as f:
             return f.read()
