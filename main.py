@@ -1,31 +1,51 @@
-# A small library of utility functions
+"""A small library of utility functions."""
+
+import math
 
 def is_prime(num):
-    # Bug: This is not a correct primality test
-    if num > 1:
-        for i in range(2, num):
-            if (num % i) == 0:
-                return False
-        return True
-    else:
+    """
+    Checks if a number is a prime number.
+
+    This implementation is optimized by checking for divisors only up to the
+    square root of the number.
+    """
+    if num <= 1:
         return False
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            return False
+    return True
 
 def fibonacci(n):
-    # Inefficient recursive implementation
+    """
+    Calculates the nth Fibonacci number using an iterative approach.
+    """
     if n <= 0:
         return 0
     elif n == 1:
         return 1
     else:
-        return fibonacci(n-1) + fibonacci(n-2)
+        a, b = 0, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
 
 def get_file_content(filename):
-    # No error handling for file not found
-    f = open(filename, "r")
-    return f.read()
+    """
+    Reads the content of a file and returns it as a string.
 
-# Poorly styled function
-def someFunction(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p):
-    # very long line
-    result = a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p
-    return result
+    Handles FileNotFoundError gracefully by returning an error message.
+    """
+    try:
+        with open(filename, "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        return "Error: File not found."
+
+def sum_of_many_numbers(*args):
+    """
+    Calculates the sum of a variable number of numerical arguments.
+
+    This function is written to adhere to PEP 8 style guidelines.
+    """
+    return sum(args)
